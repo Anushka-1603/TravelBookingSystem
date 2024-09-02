@@ -2,12 +2,16 @@
 
 ## Table of Contents
 - [Description](#Description)
+- [ER Diagram](#ER-Diagram)
 - [Features](#Features)
 - [Tech Stack](#Tech-Stack)
 - [Running Instructions](#Running-Instructions)
 
 ## Description
 This project is a comprehensive travel booking system built using Python and Streamlit. The database is created and managed by using SQLite which integrates SQL in Python. The application allows users to search and book flights, hotels, and rental cars. It is designed to provide a seamless and user-friendly experience for managing travel plans.
+
+## ER Diagram
+![Travel_ER](https://github.com/user-attachments/assets/ba8d122e-ed8a-4cdd-a289-21291712c541)
 
 
 ## Features

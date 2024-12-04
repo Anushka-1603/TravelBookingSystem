@@ -3,21 +3,37 @@ import sqlite3
 from datetime import datetime
 from hashlib import sha256
 import pandas as pd
+import base64
 
-# START CODE FOR BACKGROUND
-background_image = """
-<style>
-[data-testid="stAppViewContainer"] > .main {
-    background-image: url("https://assets.publishing.service.gov.uk/media/5a4f87d540f0b648c7222969/960-night-flight.jpg");
-    background-size: 100vw 100vh;  # This sets the size to cover 100% of the viewport width and height
-    background-position: center;  
-    background-repeat: no-repeat;
-}
-</style>
-"""
-st.markdown(background_image, unsafe_allow_html=True)
-#END CODE FOR BACKGROUND
+# Set page config to wide mode
+st.set_page_config(layout="wide")
 
+import os
+from PIL import Image
+
+def add_bg_from_local():
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    image_path = os.path.join(current_dir, "images", "background.jpg")
+    
+    with open(image_path, 'rb') as image_file:
+        encoded_string = base64.b64encode(image_file.read()).decode()
+
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("data:image/jpg;base64,{encoded_string}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+add_bg_from_local()
 
 def get_db_connection():
     conn = sqlite3.connect('travel_booking.db')
@@ -334,5 +350,3 @@ else:
                         st.error("User ID not found in session.")
                 else:
                     st.error("Please select all the required details.")
-
-
